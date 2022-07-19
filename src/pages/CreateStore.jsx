@@ -4,7 +4,7 @@ import PrimaryButton from '../components/button/btn-primary';
 import TextArea from '../components/input/text-area-input';
 import TextInput from '../components/input/text-input';
 import UrlInput from '../components/input/url.input';
-import SelectOption from '../components/select-input';
+import SelectOption from '../components/input/select-input';
 
 export default function CreateStore() {
   return (
@@ -33,7 +33,7 @@ export default function CreateStore() {
           </div>
           <SelectOption id="category" title="Kategori Bisnis" default="Pilih Kategori Bisnis" />
           <SelectOption id="saluran" title="Saluran Penjualan Utama" default="Pilih Saluran Penjualan Utama" />
-          <PrimaryButton />
+          <PrimaryButton title="Simpan" />
         </div>
       </div>
     </div>
