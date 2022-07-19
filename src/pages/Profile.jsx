@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../assets/img/logo.png';
 import store from '../assets/img/store.png';
 import SecondaryButton from '../components/button/btn-secondary';
+import ModalsForms from '../components/modals/form-modals';
 
 export default function Profile() {
+  const [isModal, setIsModal] = useState(true);
   return (
     <div className="bg-neutral flex justify-center">
       <div className="bg-white w-[646px] pb-10 pl-12 pr-12">
@@ -36,8 +38,13 @@ export default function Profile() {
             <p className="font-lato text-base">552345</p>
           </div>
         </div>
-        <SecondaryButton title="Ubah" />
+        <SecondaryButton title="Ubah" onClick={() => alert('Hallo')} />
       </div>
+      {isModal ? (
+        <div className="bg-black w-full flex justify-center fixed h-full overflow-hidden items-center">
+          <ModalsForms close={() => setIsModal(false)} />
+        </div>
+      ) : null}
     </div>
   );
 }
