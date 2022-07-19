@@ -10,6 +10,7 @@ export default function UrlInput(params) {
         <input
           id={params.id}
           placeholder={params.placeholder}
+          onChange={params.onChange}
           className="w-9/12 bg-black-5 py-2 px-4 focus:outline-none"
         />
         <div className="bg-black-20 w-3/12 h-auto flex justify-center items-center mt-[-1px]">
