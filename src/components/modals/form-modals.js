@@ -1,18 +1,20 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
 import PrimaryButton from '../button/btn-primary';
 import TextArea from '../input/text-area-input';
 import TextInput from '../input/text-input';
 import UrlInput from '../input/url.input';
-import SelectOption from '../input/select-input';
 
 import cancel from '../../assets/icon/cancel.png';
 
 export default function ModalsForms(params) {
   const { id } = useParams();
 
+  const [getCategory, setCategory] = useState([]);
+  const [getChannel, setChannel] = useState([]);
   const [getProfile, setProfile] = useState({});
   const [getForm, setForm] = useState({
     name: getProfile.name,
@@ -24,6 +26,14 @@ export default function ModalsForms(params) {
   });
 
   useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/categories`).then(response => {
+      setCategory(response.data);
+    });
+
+    axios.get(`${process.env.REACT_APP_API_URL}/sales_channels`).then(response => {
+      setChannel(response.data);
+    });
+
     axios.put(`${process.env.REACT_APP_API_URL}/store/${id}`).then(response => {
       setProfile(response.data);
       setForm(response.data);
@@ -43,16 +53,11 @@ export default function ModalsForms(params) {
 
   const onSubmit = () => {
     try {
-      // setId(Math.floor(Math.random() * (max - min + 1)) + min);
-
-      console.log(getForm);
-
       axios
         .put(`${process.env.REACT_APP_API_URL}/store/${id}`, getForm, {})
         .then(response => {
-          console.log(response.data);
           localStorage.setItem('id', response.data.id);
-          // navigate('/profile');
+          window.location.reload();
         })
         .catch(err => {
           console.log(err);
@@ -68,13 +73,17 @@ export default function ModalsForms(params) {
         <div className="flex justify-center">
           <h1 className="font-poppins text-lg font-semibold">Ubah Data Toko</h1>
         </div>
-        <button type="button" className="flex justify-items-end mt-[-23px] mr-3 cursor-pointer" onClick={params.close}>
-          <img src={cancel} alt="" />
+        <button
+          type="button"
+          className=" bg-primary w-full flex justify-items-end mr-3 cursor-pointer items-end relative"
+          onClick={params.close}
+        >
+          <img src={cancel} alt="" className="absolute right-4 top-[-20px]" />
         </button>
       </div>
       <div className="px-4">
         <form>
-          <h1 className="font-poppins font- font-semibold mb-4 text-lg">Data Toko</h1>
+          <h1 className="font-poppins font- font-semibold mb-4 text-lg mt-2">Data Toko</h1>
           <TextInput
             placeholder="Masukan Nama Toko"
             id="name"
@@ -110,8 +119,41 @@ export default function ModalsForms(params) {
           <h1 className="font-poppins font- font-semibold text-lg">Informasi Bisnis</h1>
           <p className="text-sm text-black-60 text-center mt-1 ml-2"> (Opsional)</p>
         </div>
-        <SelectOption id="category" title="Kategori Bisnis" default="Pilih Kategori Bisnis" />
-        <SelectOption id="saluran" title="Saluran Penjualan Utama" default={getProfile.sales_channel} />
+
+        <div className="mt-2">
+          <label htmlFor="category" className="font-lato text-sm text-black-60 mb-1 cursor-pointer">
+            Kategori Bisnis
+          </label>
+          <select
+            id="category"
+            onChange={e => onChange(e, 'category')}
+            className="bg-black-5 border-solid border border-black-20 py-2 px-4 rounded text-black placeholder-shown:text-black-20 text-base w-full"
+          >
+            <option>Pilih Kategori Bisnis</option>
+            {getCategory.length >= 0 ? getCategory.map(item => <option value={item.name}>{item.name}</option>) : null}
+          </select>
+        </div>
+
+        <div className="mt-2">
+          <label htmlFor="category" className="font-lato text-sm text-black-60 mb-1 cursor-pointer ">
+            Saluran Penjualan Utama
+          </label>
+          <select
+            id="channel"
+            onChange={e => onChange(e, 'sales_channel')}
+            className="bg-black-5 border-solid border border-black-20 py-2 px-4 rounded text-black placeholder-shown:text-black-20 text-base w-full"
+          >
+            <option className="hover:bg-primary active:bg-primary">Pilih Saluran Penjualan Utama</option>
+            {getChannel.length >= 0
+              ? getChannel.map(item => (
+                  <option value={item.name} className="hover:bg-primary">
+                    {item.name}
+                  </option>
+                ))
+              : null}
+          </select>
+        </div>
+
         <PrimaryButton title="Simpan" onClick={() => onSubmit()} />
       </div>
     </div>

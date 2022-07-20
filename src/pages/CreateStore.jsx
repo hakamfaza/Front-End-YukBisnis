@@ -12,11 +12,6 @@ export default function CreateStore() {
   const [getCategory, setCategory] = useState([]);
   const [getChannel, setChannel] = useState([]);
 
-  // const max = 200;
-  // const min = 100;
-  // const [getId, setId] = useState();
-  console.log(getCategory, getChannel);
-
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/categories`).then(response => {
       setCategory(response.data);
@@ -46,16 +41,11 @@ export default function CreateStore() {
 
   const onSubmit = () => {
     try {
-      // setId(Math.floor(Math.random() * (max - min + 1)) + min);
-
-      // console.log(getForm);
-
       axios
         .post(`${process.env.REACT_APP_API_URL}/store`, getForm, {})
         .then(response => {
-          console.log(response);
-          localStorage.setItem('id', getForm.id);
-          navigate('/profile');
+          localStorage.setItem('id', response.data.id);
+          navigate(`/profile/${response.data.id}`);
         })
         .catch(err => {
           console.log(err);
@@ -112,12 +102,12 @@ export default function CreateStore() {
               className="bg-black-5 border-solid border border-black-20 py-2 px-4 rounded text-black placeholder-shown:text-black-20 text-base w-full"
             >
               <option>Pilih Kategori Bisnis</option>
-              {/* {getCategory.length >= 0 ? getCategory.map(item => <option value={item}>{item}</option>) : null} */}
+              {getCategory.length >= 0 ? getCategory.map(item => <option value={item.name}>{item.name}</option>) : null}
             </select>
           </div>
 
           <div className="mt-2">
-            <label htmlFor="category" className="font-lato text-sm text-black-60 mb-1 cursor-pointer">
+            <label htmlFor="category" className="font-lato text-sm text-black-60 mb-1 cursor-pointer ">
               Saluran Penjualan Utama
             </label>
             <select
@@ -125,8 +115,14 @@ export default function CreateStore() {
               onChange={e => onChange(e, 'sales_channel')}
               className="bg-black-5 border-solid border border-black-20 py-2 px-4 rounded text-black placeholder-shown:text-black-20 text-base w-full"
             >
-              <option>Pilih Saluran Penjualan Utama</option>
-              {/* {getChannel.length >= 0 ? getChannel.map(item => <option value={item}>{item}</option>) : null} */}
+              <option className="hover:bg-primary active:bg-primary">Pilih Saluran Penjualan Utama</option>
+              {getChannel.length >= 0
+                ? getChannel.map(item => (
+                    <option value={item.name} className="hover:bg-primary">
+                      {item.name}
+                    </option>
+                  ))
+                : null}
             </select>
           </div>
 

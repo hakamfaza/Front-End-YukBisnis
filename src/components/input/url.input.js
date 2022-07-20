@@ -16,7 +16,7 @@ export default function UrlInput(params) {
           className="w-9/12 bg-black-5 py-2 px-4 focus:outline-none"
         />
         <div className="bg-black-20 w-3/12 h-auto flex justify-center items-center mt-[-1px]">
-          <h1 className="font-normal font-lato text-base">.yukbisnis.website</h1>
+          <h1 className="font-normal font-lato text-sm">.yukbisnis.website</h1>
         </div>
       </span>
     </div>

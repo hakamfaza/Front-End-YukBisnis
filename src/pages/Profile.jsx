@@ -8,7 +8,6 @@ import ModalsForms from '../components/modals/form-modals';
 
 export default function Profile() {
   const { id } = useParams();
-  console.log(id);
 
   const [isModal, setIsModal] = useState(false);
   const [getProfile, setProifle] = useState({});
@@ -24,8 +23,8 @@ export default function Profile() {
       <div className="bg-white w-[646px] pb-10 pl-12 pr-12">
         <div className="flex justify-center items-center flex-col p-12 pt-10">
           <img src={logo} alt="" className="w-20" />
-          <h1 className="font-poppins font-bold text-2xl mt-6">Selamat Datang di Yubipro</h1>
-          <p className="font-lato text-black-60 text-sm mt-2">Lengkapi data toko untuk membuat toko online.</p>
+          <h1 className="font-poppins font-bold text-2xl mt-6">Toko Berhasil Dibuat!</h1>
+          <p className="font-lato text-black-60 text-sm mt-2">Berikut adalah detail data toko Anda.</p>
         </div>
         <div className="rounded border-solid border border-black-20">
           {getProfile ? (
@@ -55,9 +54,12 @@ export default function Profile() {
         <SecondaryButton title="Ubah" onClick={() => setIsModal(true)} />
       </div>
       {isModal ? (
-        <div className="bg-black w-full flex justify-center fixed h-full overflow-hidden items-center">
-          <ModalsForms close={() => setIsModal(false)} />
-        </div>
+        <>
+          <div className="bg-black w-full flex justify-center fixed h-full overflow-hidden items-center opacity-50" />
+          <div className=" w-full absolute left-[363px] top-36">
+            <ModalsForms close={() => setIsModal(false)} />
+          </div>
+        </>
       ) : null}
     </div>
   );
