@@ -8,7 +8,7 @@ export default function router() {
     <BrowserRouter>
       <Routes path="/">
         <Route index element={<CreateStore />} />
-        <Route path="/profile">
+        <Route path="/profile/:id">
           <Route index element={<Profile />} />
         </Route>
       </Routes>

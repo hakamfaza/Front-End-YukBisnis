@@ -11,7 +11,6 @@ export default function CreateStore() {
   const navigate = useNavigate();
   const [getCategory, setCategory] = useState([]);
   const [getChannel, setChannel] = useState([]);
-  const category = ['Agrobisnis', 'Elektrik', 'Fashion', 'Kesehatan', 'Mainan & Hobi', 'Olahraga'];
 
   const max = 200;
   const min = 100;
@@ -33,8 +32,8 @@ export default function CreateStore() {
     address: '',
     category: '',
     postal: '',
-    sales_channel: '',
-    id: 50
+    sales_channel: ''
+    // id: 50
   });
 
   const onChange = (e, field) => {
@@ -113,7 +112,7 @@ export default function CreateStore() {
               className="bg-black-5 border-solid border border-black-20 py-2 px-4 rounded text-black placeholder-shown:text-black-20 text-base w-full"
             >
               <option>Pilih Kategori Bisnis</option>
-              {getCategory.length >= 0 ? category.map(item => <option value={item}>{item}</option>) : null}
+              {/* {getCategory.length >= 0 ? getCategory.map(item => <option value={item}>{item}</option>) : null} */}
             </select>
           </div>
 
@@ -127,7 +126,7 @@ export default function CreateStore() {
               className="bg-black-5 border-solid border border-black-20 py-2 px-4 rounded text-black placeholder-shown:text-black-20 text-base w-full"
             >
               <option>Pilih Saluran Penjualan Utama</option>
-              {getChannel.length >= 0 ? category.map(item => <option value={item}>{item}</option>) : null}
+              {/* {getChannel.length >= 0 ? getChannel.map(item => <option value={item}>{item}</option>) : null} */}
             </select>
           </div>
 

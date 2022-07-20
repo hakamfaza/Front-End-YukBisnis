@@ -10,6 +10,7 @@ export default function TextArea(params) {
         id={params.id}
         placeholder={params.placeholder}
         onChange={params.onChange}
+        defaultValue={params.defaultValue}
         className="bg-black-5 border-solid border border-black-20 py-2 px-4 rounded text-black placeholder-shown:text-black-20 text-base min-h-[65px]"
       />
     </div>

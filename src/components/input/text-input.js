@@ -11,6 +11,7 @@ export default function TextInput(params) {
         placeholder={params.placeholder}
         id={params.id}
         onChange={params.onChange}
+        defaultValue={params.defaultValue}
         className="bg-black-5 border-solid border border-black-20 py-2 px-4 rounded text-black placeholder-shown:text-black-20 text-base"
       />
     </div>
