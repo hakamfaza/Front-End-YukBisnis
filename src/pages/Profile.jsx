@@ -55,8 +55,8 @@ export default function Profile() {
       </div>
       {isModal ? (
         <>
-          <div className="bg-black w-full flex justify-center fixed h-full overflow-hidden items-center opacity-50" />
-          <div className=" w-full absolute left-[363px] top-36">
+          <div className="bg-black w-screen flex justify-center fixed h-full items-center opacity-50 overflow-hidden" />
+          <div className="absolute left-[340px] top-36">
             <ModalsForms close={() => setIsModal(false)} />
           </div>
         </>

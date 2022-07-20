@@ -68,7 +68,7 @@ export default function ModalsForms(params) {
   };
 
   return (
-    <div className="relative w-5/12 bg-white h-[500px] overflow-auto rounded-md opacity-1 pb-3">
+    <div className="relative w-[550px] bg-white h-[500px] overflow-x-auto rounded-md opacity-1 pb-3">
       <div className="shadow py-4">
         <div className="flex justify-center">
           <h1 className="font-poppins text-lg font-semibold">Ubah Data Toko</h1>
