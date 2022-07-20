@@ -12,9 +12,10 @@ export default function CreateStore() {
   const [getCategory, setCategory] = useState([]);
   const [getChannel, setChannel] = useState([]);
 
-  const max = 200;
-  const min = 100;
-  const [getId, setId] = useState();
+  // const max = 200;
+  // const min = 100;
+  // const [getId, setId] = useState();
+  console.log(getCategory, getChannel);
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/categories`).then(response => {
@@ -33,7 +34,6 @@ export default function CreateStore() {
     category: '',
     postal: '',
     sales_channel: ''
-    // id: 50
   });
 
   const onChange = (e, field) => {
