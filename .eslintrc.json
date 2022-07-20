@@ -17,8 +17,6 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    // "prettier/prettier": "error",
-    "react/destructuring-assignment": "always",
     "no-unused-vars": "warn",
     "no-console": "off",
     "func-names": "off",

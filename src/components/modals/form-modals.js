@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -12,7 +13,6 @@ import cancel from '../../assets/icon/cancel.png';
 export default function ModalsForms(params) {
   const { id } = useParams();
 
-  const [isModal, setIsModal] = useState(false);
   const [getProfile, setProfile] = useState({});
   const [getForm, setForm] = useState({
     name: getProfile.name,
